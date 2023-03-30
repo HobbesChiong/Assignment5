@@ -1,2 +1,4 @@
-package ca.myapp;public class Application {
+package ca.myapp;
+
+public class Application {
 }

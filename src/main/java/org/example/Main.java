@@ -1,6 +1,6 @@
 package org.example;
 
-import Model.CsvReader;
+import model.CsvReader;
 
 import java.util.List;
 

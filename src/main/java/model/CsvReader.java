@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 
 import java.util.ArrayList;
@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CsvReader {
-
     String filename;
     private static final String SPLIT_STRING = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
     private List<String[]> listOfCsvRows = new ArrayList<>();

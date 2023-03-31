@@ -49,4 +49,20 @@ public class Section {
                 && this.enrollmentTotal == otherSection.enrollmentTotal
                 && this.enrollmentCap == otherSection.enrollmentCap;
     }
+
+    public void increaseEnrollmentCap(int val){
+        enrollmentCap += val;
+    }
+    public void increaseEnrollmentTotal(int val) {
+        enrollmentTotal += val;
+    }
+    @Override
+    public String toString() {
+        return "Section{" +
+                "componentCode=" + componentCode +
+                ", enrollmentTotal='" + enrollmentTotal +
+                ", enrollmentCap=" + enrollmentCap +
+                '}';
+    }
 }
+

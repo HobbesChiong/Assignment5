@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateList {
-
     List<Department> departmentList = new ArrayList<>();
     private final static int SEMESTER_INDEX = 0;
     private final static int DEPARTMENT_INDEX = 1;
@@ -15,8 +14,12 @@ public class CreateList {
     private final static int INSTRUCTOR_INDEX = 6;
     private final static int COMPONENT_CODE_INDEX = 7;
 
-    public void createDepartmentList() {
-        CsvReader courseData = new CsvReader("data\\course_data_2018.csv");
+    public CreateList() {
+        createDepartmentList();
+    }
+    private void createDepartmentList() {
+        String FILE_NAME = "data\\course_data_2018.csv";
+        CsvReader courseData = new CsvReader(FILE_NAME);
         List<String[]> courseDataList = courseData.getListOfCsvRows();
 
         for (String[] index : courseDataList) {
@@ -42,17 +45,25 @@ public class CreateList {
 
     // garbarge
     public void printeverything() {
+        // department
         for (int i = 0; i < departmentList.size(); i++) {
             System.out.println(departmentList.get(i).toString());
 
+            // courses
             for(int j = 0; j < departmentList.get(i).getCourseList().size(); j++) {
                 System.out.println("   " + departmentList.get(i).getCourseList().get(j).toString());
-
+                // offerings
                 for(int k = 0; k < departmentList.get(i).getCourseList().get(j).getOfferingList().size(); k++) {
                     System.out.println("      " + departmentList.get(i).getCourseList().get(j).getOfferingList().get(k).toString());
+                    // sections
                 }
+
             }
         }
+    }
+
+    public List<Department> getDepartmentList() {
+        return departmentList;
     }
 
     private boolean isInDepartmentList(Department department) {

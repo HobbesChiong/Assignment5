@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Course {
@@ -42,6 +43,19 @@ public class Course {
         if (isInOfferingList(offering)) {
             for (Offering off : offeringList) {
                 if (off.equals(offering)) {
+                    String oldInstructor = off.getInstructor();
+                    String newInstructor = offering.getInstructor().replaceAll("\\s+", " ");
+                    if(!(oldInstructor.contains(newInstructor))) {
+                        int res = oldInstructor.compareTo(newInstructor);
+                        // old instructor comes first
+                        if(res < 0) {
+                            off.setInstructor(oldInstructor + ", " + newInstructor);
+                        }
+                        else{
+                            off.setInstructor(newInstructor + ", " + oldInstructor);
+                        }
+
+                    }
                     off.addToSectionList(section);
                 }
             }
@@ -61,11 +75,28 @@ public class Course {
         return false;
     }
 
+    public void sortOfferingList() {
+        offeringList.sort((o1, o2) -> {
+            int res = Integer.compare(o1.getSemesterCode(), o2.getSemesterCode());
+            if(res == 0) {
+                return o1.getLocation().compareTo(o2.getLocation());
+            }
+            else{
+                return res;
+            }
+        });
+
+        int i = 0;
+        for(Offering offering : offeringList) {
+            offering.setCourseOfferingId(i);
+            i++;
+        }
+    }
     @Override
     public String toString() {
         return "Course{" +
                 "courseId=" + courseId +
-                ", catalogNumber='" + catalogNumber + '\'' +
+                ", catalogNumber='" + catalogNumber +
                 ", offeringList=" + offeringList +
                 '}';
     }

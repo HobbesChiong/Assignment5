@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Department {
@@ -67,12 +68,21 @@ public class Department {
         return false;
     }
 
+    public void sortCourseList() {
+        courseList.sort((c1, c2) -> c1.getCatalogNumber().compareTo(c2.getCatalogNumber()));
+
+        int i = 0;
+        for(Course course : courseList) {
+            course.setCourseId(i);
+            i++;
+        }
+    }
     @Override
     public String toString() {
 
         return "Department{" +
                 "deptId=" + deptId +
-                ", name='" + name + '\'' +
+                ", name='" + name +
                 ", courseList=" + courseList +
                 '}';
     }

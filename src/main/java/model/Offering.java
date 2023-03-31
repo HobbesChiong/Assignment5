@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Offering {
@@ -18,12 +19,12 @@ public class Offering {
 
     public Offering(String location, String instructor, String semesterCode) {
         this.location = location;
-        if (instructor == null) {
+        if (instructor.equals("(null)") || instructor.equals("<null>")) {
             this.instructor = "";
         } else {
             this.instructor = instructor;
         }
-        this.semesterCode = Integer.valueOf(semesterCode);
+        this.semesterCode = Integer.parseInt(semesterCode);
         this.sectionList = new ArrayList<>();
     }
 
@@ -59,11 +60,18 @@ public class Offering {
         this.instructor = instructor;
     }
 
+    public void addInstructor(String instructor) {
+        this.instructor = this.instructor + ", " + instructor;
+    }
+
+    public List<Section> getSectionList() {
+        return sectionList;
+    }
+
     public void addToSectionList(Section section) {
-        if (isInSectionList(section)) {
-            section.setSectionId(sectionList.size());
-            sectionList.add(section);
-        }
+
+        section.setSectionId(sectionList.size());
+        sectionList.add(section);
     }
 
     private boolean isInSectionList(Section section) {
@@ -77,7 +85,23 @@ public class Offering {
 
     public boolean equals(Offering otherOffering) {
         return this.semesterCode == otherOffering.semesterCode
-                && this.location.equals(otherOffering.location)
-                && this.instructor.equals(otherOffering.instructor);
+                && this.location.equals(otherOffering.location);
+    }
+
+    public void sortSectionList() {
+        sectionList.sort((s1, s2) -> s1.getComponentCode().compareToIgnoreCase(s2.getComponentCode()));
+        int i = 0;
+        for(Section section : sectionList) {
+            section.setSectionId(i);
+            i++;
+        }
+    }
+    @Override
+    public String toString() {
+        return "Offering{" +
+                "location=" + location +
+                ", instructor='" + instructor  +
+                ", semesterCode=" + semesterCode +
+                '}';
     }
 }

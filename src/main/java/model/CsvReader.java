@@ -7,7 +7,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+/*
+    Reads a CSV file and each row becomes an index in listOfCsvRows
+ */
 public class CsvReader {
     String filename;
     private static final String SPLIT_STRING = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";

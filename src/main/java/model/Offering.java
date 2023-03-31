@@ -3,7 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
+/*
+    A specific offering of a class in a given semester
+ */
 public class Offering {
     // Assume there is at most one offering of each course at each campus during a single
     //semester. Therefore aggregate all lectures, all tutorials, etc for a single course/campus

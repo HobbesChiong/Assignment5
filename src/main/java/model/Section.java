@@ -1,5 +1,7 @@
 package model;
-
+/*
+    A specific section of an offering in a semester
+ */
 public class Section {
     private int sectionId;
     private String componentCode;

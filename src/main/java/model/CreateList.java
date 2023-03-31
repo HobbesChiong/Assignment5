@@ -2,7 +2,9 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+     instantiates our model class with the data from CSV Reader
+ */
 public class CreateList {
     List<Department> departmentList = new ArrayList<>();
     private final static int SEMESTER_INDEX = 0;

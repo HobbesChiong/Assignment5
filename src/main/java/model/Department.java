@@ -3,7 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
+/*
+    A specific department at SFU
+    ex: MACM
+ */
 public class Department {
     // index in the array not sure what this value is for yet?
     private int deptId;

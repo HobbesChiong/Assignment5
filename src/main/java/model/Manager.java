@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
+/*
+    Manages the data by storing all the departments into a list which contains further information
+ */
 public class Manager {
 
     List<Department> departmentList;
@@ -14,7 +16,7 @@ public class Manager {
         departmentList = newDepartmentList.getDepartmentList();
         sortAllLists();
     }
-
+    // TODO: having this here is probably fine but consider moving it
     public void dumpModel() {
         for(Department department : departmentList) {
             List<Course> courseList = department.getCourseList();
@@ -65,7 +67,7 @@ public class Manager {
 
 
 
-
+    // TODO: Consider aggregating the sections during sorting here instead of dump model
     private void sortAllLists() {
         departmentList.sort((d1, d2) -> d1.getName().compareToIgnoreCase(d2.getName()));
         int i = 0;

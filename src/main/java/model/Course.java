@@ -3,7 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
+/*
+    a specific course in a department differentiated by its catalog number
+    Ex: 250 in CMPT 250
+ */
 public class Course {
     // index in the array not sure what this value is for yet?
     private int courseId;

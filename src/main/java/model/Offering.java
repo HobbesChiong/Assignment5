@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 /*
     A specific offering of a class in a given semester
@@ -17,7 +16,8 @@ public class Offering {
     private int year;
     private int semesterCode;
     private String term;
-    private List<Section> sectionList;
+    private final List<Section> sectionList;
+    private List<Section> aggregatedSectionList;
 
     public Offering(String location, String instructor, String semesterCode) {
         this.location = location;
@@ -70,8 +70,9 @@ public class Offering {
         return sectionList;
     }
 
-    public void addToSectionList(Section section) {
+    public List<Section> getAggregatedSectionList() {return aggregatedSectionList;}
 
+    public void addToSectionList(Section section) {
         section.setSectionId(sectionList.size());
         sectionList.add(section);
     }
@@ -93,11 +94,43 @@ public class Offering {
     public void sortSectionList() {
         sectionList.sort((s1, s2) -> s1.getComponentCode().compareToIgnoreCase(s2.getComponentCode()));
         int i = 0;
-        for(Section section : sectionList) {
+        for (Section section : sectionList) {
             section.setSectionId(i);
             i++;
         }
     }
+
+    public void aggregateSectionList() {
+        List<Section> aggregatedSectionList = new ArrayList<>();
+        for (Section section : sectionList) {
+            if (aggregatedSectionList.isEmpty()) {
+                aggregatedSectionList.add(section);
+            } else {
+                updateAggregatedSectionList(aggregatedSectionList, section);
+            }
+        }
+        this.aggregatedSectionList  = aggregatedSectionList;
+
+    }
+
+    private static void updateAggregatedSectionList(List<Section> aggregatedSectionList, Section section) {
+        boolean isInside = false;
+        for (Section aggregatedSection : aggregatedSectionList) {
+            String componentCode = section.getComponentCode();
+            int newEnrollmentCap = section.getEnrollmentCap();
+            int newEnrollmentTotal = section.getEnrollmentTotal();
+            if (aggregatedSection.getComponentCode().equals(componentCode)) {
+                aggregatedSection.increaseEnrollmentCap(newEnrollmentCap);
+                aggregatedSection.increaseEnrollmentTotal(newEnrollmentTotal);
+                isInside = true;
+                break;
+            }
+        }
+        if (!isInside) {
+            aggregatedSectionList.add(section);
+        }
+    }
+
     @Override
     public String toString() {
         return "Offering{" +

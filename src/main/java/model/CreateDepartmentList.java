@@ -5,7 +5,7 @@ import java.util.List;
 /*
      instantiates our model class with the data from CSV Reader
  */
-public class CreateList {
+public class CreateDepartmentList {
     List<Department> departmentList = new ArrayList<>();
     private final static int SEMESTER_INDEX = 0;
     private final static int DEPARTMENT_INDEX = 1;
@@ -16,7 +16,7 @@ public class CreateList {
     private final static int INSTRUCTOR_INDEX = 6;
     private final static int COMPONENT_CODE_INDEX = 7;
 
-    public CreateList() {
+    public CreateDepartmentList() {
         createDepartmentList();
     }
     private void createDepartmentList() {
@@ -31,36 +31,21 @@ public class CreateList {
             Offering curOffering = new Offering(index[LOCATION_INDEX], index[INSTRUCTOR_INDEX], index[SEMESTER_INDEX]);
             Section curSection = new Section(index[COMPONENT_CODE_INDEX], index[ENROLLMENT_TOTAL_INDEX], index[ENROLLMENT_CAP_INDEX]);
 
-            if (isInDepartmentList(newDepartment)) {
-                for (Department dept : departmentList) {
-                    if (dept.getName().equals(curDeptName)) {
-                        dept.addToCourseList(curCourse, curOffering, curSection);
-                    }
-                }
-            } else {
-                newDepartment.setDeptId(departmentList.size());
-                departmentList.add(newDepartment);
-                newDepartment.addToCourseList(curCourse, curOffering, curSection);
-            }
+            createModel(curDeptName, newDepartment, curCourse, curOffering, curSection);
         }
     }
 
-    // garbarge
-    public void printeverything() {
-        // department
-        for (int i = 0; i < departmentList.size(); i++) {
-            System.out.println(departmentList.get(i).toString());
-
-            // courses
-            for(int j = 0; j < departmentList.get(i).getCourseList().size(); j++) {
-                System.out.println("   " + departmentList.get(i).getCourseList().get(j).toString());
-                // offerings
-                for(int k = 0; k < departmentList.get(i).getCourseList().get(j).getOfferingList().size(); k++) {
-                    System.out.println("      " + departmentList.get(i).getCourseList().get(j).getOfferingList().get(k).toString());
-                    // sections
+    private void createModel(String curDeptName, Department newDepartment, Course curCourse, Offering curOffering, Section curSection) {
+        if (isInDepartmentList(newDepartment)) {
+            for (Department dept : departmentList) {
+                if (dept.getName().equals(curDeptName)) {
+                    dept.addToCourseList(curCourse, curOffering, curSection);
                 }
-
             }
+        } else {
+            newDepartment.setDeptId(departmentList.size());
+            departmentList.add(newDepartment);
+            newDepartment.addToCourseList(curCourse, curOffering, curSection);
         }
     }
 

@@ -4,16 +4,17 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
+
 /*
     Reads a CSV file and each row becomes an index in listOfCsvRows
  */
 public class CsvReader {
     String filename;
     private static final String SPLIT_STRING = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
-    private List<String[]> listOfCsvRows = new ArrayList<>();
+    private final List<String[]> listOfCsvRows = new ArrayList<>();
 
     public CsvReader(String filename) {
         this.filename = filename;
@@ -40,14 +41,11 @@ public class CsvReader {
 
                 listOfCsvRows.add(trimmedRow);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
         } catch (IOException e) {
             throw new RuntimeException();
-        }
-        finally {
+        } finally {
             try {
-                reader.close();
+                Objects.requireNonNull(reader).close();
             } catch (IOException e) {
                 throw new RuntimeException();
             }

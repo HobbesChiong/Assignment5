@@ -58,9 +58,6 @@ public class Department {
         }
     }
 
-    private void addOfferingToList(Offering offering, Section section) {
-
-    }
 
     private boolean isInCourseList(Course course) {
         for (Course catalogNumber : courseList) {
@@ -72,17 +69,15 @@ public class Department {
     }
 
     public void sortCourseList() {
-        courseList.sort((c1, c2) -> c1.getCatalogNumber().compareTo(c2.getCatalogNumber()));
-
+        courseList.sort(Comparator.comparing(Course::getCatalogNumber));
         int i = 0;
-        for(Course course : courseList) {
+        for (Course course : courseList) {
             course.setCourseId(i);
             i++;
         }
     }
     @Override
     public String toString() {
-
         return "Department{" +
                 "deptId=" + deptId +
                 ", name='" + name +

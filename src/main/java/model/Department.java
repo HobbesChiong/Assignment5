@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -40,6 +42,7 @@ public class Department {
         return name;
     }
 
+    @JsonIgnore
     public List<Course> getCourseList() {
         return courseList;
     }

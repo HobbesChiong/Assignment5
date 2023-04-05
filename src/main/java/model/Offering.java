@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -28,8 +30,23 @@ public class Offering {
         }
         this.semesterCode = Integer.parseInt(semesterCode);
         this.sectionList = new ArrayList<>();
+        int x = Integer.parseInt(String.valueOf(semesterCode.charAt(0)));
+        int y = Integer.parseInt(String.valueOf(semesterCode.charAt(1)));
+        int z = Integer.parseInt(String.valueOf(semesterCode.charAt(2)));
+        int a = Integer.parseInt(String.valueOf(semesterCode.charAt(3)));
+        this.year = 1900 + (100*x) + (10*y) + z;
+        switch (a) {
+            case 1 -> this.term = "Spring";
+            case 4 -> this.term = "Summer";
+            case 7 -> this.term = "Fall";
+        }
     }
-
+    public int getYear() {
+        return year;
+    }
+    public String getTerm() {
+        return term;
+    }
     public int getSemesterCode() {
         return semesterCode;
     }
@@ -66,10 +83,12 @@ public class Offering {
         this.instructor = this.instructor + ", " + instructor;
     }
 
+    @JsonIgnore
     public List<Section> getSectionList() {
         return sectionList;
     }
 
+    @JsonIgnore
     public List<Section> getAggregatedSectionList() {return aggregatedSectionList;}
 
     public void addToSectionList(Section section) {

@@ -13,7 +13,10 @@ public class Manager {
         departmentList = newDepartmentList.getDepartmentList();
         sortAllLists();
     }
-    // TODO: having this here is probably fine but consider moving it
+    public List<Department> getDepartmentList() {
+        return departmentList;
+    }
+
     public void dumpModel() {
         printModel();
     }

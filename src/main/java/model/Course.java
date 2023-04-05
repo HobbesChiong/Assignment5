@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -33,6 +35,7 @@ public class Course {
         this.catalogNumber = catalogNumber;
     }
 
+    @JsonIgnore
     public List<Offering> getOfferingList() {
         return offeringList;
     }

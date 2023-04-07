@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5501948c-3850-4976-8fb3-0335d10f076d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/CreateList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Offering.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Offering.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Section.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="5501948c-3850-4976-8fb3-0335d10f076d" name="Changes" comment="sort the lists" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,8 +44,16 @@
       <option name="presentableId" value="Default" />
       <updated>1680170174606</updated>
       <workItem from="1680170176948" duration="1054000" />
-      <workItem from="1680171294074" duration="6509000" />
+      <workItem from="1680171294074" duration="6771000" />
     </task>
+    <task id="LOCAL-00001" summary="sort the lists">
+      <created>1680177827046</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680177827046</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -70,6 +69,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="sort the lists" />
+    <option name="LAST_COMMIT_MESSAGE" value="sort the lists" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

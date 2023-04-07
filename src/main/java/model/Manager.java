@@ -7,9 +7,10 @@ import java.util.List;
 public class Manager {
 
     List<Department> departmentList;
+    CreateDepartmentList newDepartmentList;
 
     public Manager() {
-        CreateDepartmentList newDepartmentList = new CreateDepartmentList();
+        newDepartmentList = new CreateDepartmentList();
         departmentList = newDepartmentList.getDepartmentList();
         sortAllLists();
     }
@@ -25,6 +26,7 @@ public class Manager {
             printCourses(department.getCourseList(), department.getName());
         }
     }
+
     private void printCourses(List<Course> courseList, String departmentName) {
         for (Course course : courseList) {
             System.out.println(departmentName + " " + course.getCatalogNumber());
@@ -41,6 +43,7 @@ public class Manager {
             printSections(offering.getAggregatedSectionList());
         }
     }
+
     private String cleansedInstructorString(Offering offering) {
         String result = offering.getInstructor().replaceAll("\\s+", " ");
         if (!result.isEmpty()) {
@@ -50,6 +53,7 @@ public class Manager {
         }
         return result;
     }
+
     private void printSections(List<Section> aggregatedSectionList) {
         for (Section section: aggregatedSectionList) {
             String componentCode = section.getComponentCode();
@@ -81,7 +85,6 @@ public class Manager {
             sortSectionList(course.getOfferingList());
             course.sortOfferingList();
         }
-
     }
 
     private void sortSectionList(List<Offering> offeringList) {
@@ -91,7 +94,12 @@ public class Manager {
         }
     }
 
-
-
-
+    public void addOffering(String semester, String subjectName, String catalogNumber, String location,
+                            String enrollmentCap, String component, String enrollmentTotal, String instructor)
+    {
+        newDepartmentList.addOffering(semester, subjectName, catalogNumber, location, enrollmentCap, component,
+                enrollmentTotal, instructor);
+        departmentList = newDepartmentList.getDepartmentList();
+        sortAllLists();
+    }
 }

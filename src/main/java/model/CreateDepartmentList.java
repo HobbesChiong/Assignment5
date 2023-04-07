@@ -19,6 +19,8 @@ public class CreateDepartmentList {
     public CreateDepartmentList() {
         createDepartmentList();
     }
+
+    // TODO: Why is this a capiotal
     private void createDepartmentList() {
         String FILE_NAME = "data\\course_data_2018.csv";
         CsvReader courseData = new CsvReader(FILE_NAME);
@@ -53,12 +55,23 @@ public class CreateDepartmentList {
         return departmentList;
     }
 
-    private boolean isInDepartmentList(Department department) {
+    public boolean isInDepartmentList(Department department) {
         for (Department dept : departmentList) {
             if (dept.getName().equals(department.getName())) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void addOffering (String semester, String subjectName, String catalogNumber, String location,
+                             String enrollmentCap, String component, String enrollmentTotal, String instructor)
+    {
+        Department newDepartment = new Department(subjectName);
+        Course newCourse = new Course(catalogNumber);
+        Offering newOffering = new Offering(location, instructor, semester);
+        Section newSection = new Section(component, enrollmentTotal, enrollmentCap);
+
+        createModel(subjectName, newDepartment, newCourse, newOffering, newSection);
     }
 }

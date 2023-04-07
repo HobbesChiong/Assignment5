@@ -3,9 +3,11 @@ package ca.myapp.controllers;
 
 import model.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class Controller {
@@ -56,5 +58,22 @@ public class Controller {
                 .get(courseOfferingIndex).getAggregatedSectionList();
     }
 
+    @PostMapping("/api/addoffering")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addOffering(@RequestBody OfferingInput offeringInput) {
+        manager.addOffering(String.valueOf(offeringInput.getSemester()),
+                offeringInput.getSubjectName(),
+                offeringInput.getCatalogNumber(),
+                offeringInput.getLocation(),
+                String.valueOf(offeringInput.getEnrollmentCap()),
+                offeringInput.getComponent(),
+                String.valueOf(offeringInput.getEnrollmentTotal()),
+                offeringInput.getInstructor());
+    }
 
+    @PostMapping("/api/watchers")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createWatcher(@RequestBody CourseWatcher courseWatcher) {
+        // use the getters to get the deptID and courseID NOTE these are ints (im not sure what brian is gonna insert them as so theyre ints for now)
+    }
 }

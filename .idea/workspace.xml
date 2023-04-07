@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5501948c-3850-4976-8fb3-0335d10f076d" name="Changes" comment="sort the lists" />
+    <list default="true" id="5501948c-3850-4976-8fb3-0335d10f076d" name="Changes" comment="commitg">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/OfferingInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/myapp/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/myapp/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/CourseWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CourseWatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/CreateDepartmentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CreateDepartmentList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Manager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +22,13 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,6 +43,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -45,6 +64,8 @@
       <updated>1680170174606</updated>
       <workItem from="1680170176948" duration="1054000" />
       <workItem from="1680171294074" duration="6771000" />
+      <workItem from="1680861647124" duration="9847000" />
+      <workItem from="1680898273599" duration="5980000" />
     </task>
     <task id="LOCAL-00001" summary="sort the lists">
       <created>1680177827046</created>
@@ -53,7 +74,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680177827046</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="commitg">
+      <created>1680861861888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680861861888</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commitg">
+      <created>1680861900401</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1680861900401</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -72,7 +107,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sort the lists" />
-    <option name="LAST_COMMIT_MESSAGE" value="sort the lists" />
+    <MESSAGE value="commitg" />
+    <option name="LAST_COMMIT_MESSAGE" value="commitg" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

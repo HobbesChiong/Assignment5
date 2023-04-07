@@ -1,8 +1,13 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+    a specific course in a department differentiated by its catalog number
+    Ex: 250 in CMPT 250
+ */
 public class Course {
     // index in the array not sure what this value is for yet?
     private int courseId;
@@ -30,6 +35,7 @@ public class Course {
         this.catalogNumber = catalogNumber;
     }
 
+    @JsonIgnore
     public List<Offering> getOfferingList() {
         return offeringList;
     }
@@ -42,6 +48,9 @@ public class Course {
         if (isInOfferingList(offering)) {
             for (Offering off : offeringList) {
                 if (off.equals(offering)) {
+                    String oldInstructor = off.getInstructor();
+                    String newInstructor = offering.getInstructor().replaceAll("\\s+", " ");
+                    updateInstructorString(off, oldInstructor, newInstructor);
                     off.addToSectionList(section);
                 }
             }
@@ -49,6 +58,14 @@ public class Course {
             offering.setCourseOfferingId(offeringList.size());
             offeringList.add(offering);
             offering.addToSectionList(section);
+        }
+    }
+
+    private static void updateInstructorString(Offering off, String oldInstructor, String newInstructor) {
+        if (!(oldInstructor.contains(newInstructor))) {
+            int res = oldInstructor.compareTo(newInstructor);
+            off.setInstructor(res < 0 ? oldInstructor + ", " + newInstructor : newInstructor + ", " + oldInstructor);
+
         }
     }
 
@@ -61,11 +78,28 @@ public class Course {
         return false;
     }
 
+    public void sortOfferingList() {
+        offeringList.sort((o1, o2) -> {
+            int res = Integer.compare(o1.getSemesterCode(), o2.getSemesterCode());
+            if (res == 0) {
+                return o1.getLocation().compareTo(o2.getLocation());
+            }
+            else {
+                return res;
+            }
+        });
+
+        int i = 0;
+        for (Offering offering : offeringList) {
+            offering.setCourseOfferingId(i);
+            i++;
+        }
+    }
     @Override
     public String toString() {
         return "Course{" +
                 "courseId=" + courseId +
-                ", catalogNumber='" + catalogNumber + '\'' +
+                ", catalogNumber='" + catalogNumber +
                 ", offeringList=" + offeringList +
                 '}';
     }

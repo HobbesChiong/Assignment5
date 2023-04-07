@@ -1,8 +1,12 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+    A specific offering of a class in a given semester
+ */
 public class Offering {
     // Assume there is at most one offering of each course at each campus during a single
     //semester. Therefore aggregate all lectures, all tutorials, etc for a single course/campus
@@ -14,19 +18,35 @@ public class Offering {
     private int year;
     private int semesterCode;
     private String term;
-    private List<Section> sectionList;
+    private final List<Section> sectionList;
+    private List<Section> aggregatedSectionList;
 
     public Offering(String location, String instructor, String semesterCode) {
         this.location = location;
-        if (instructor == null) {
+        if (instructor.equals("(null)") || instructor.equals("<null>")) {
             this.instructor = "";
         } else {
             this.instructor = instructor;
         }
-        this.semesterCode = Integer.valueOf(semesterCode);
+        this.semesterCode = Integer.parseInt(semesterCode);
         this.sectionList = new ArrayList<>();
+        int x = Integer.parseInt(String.valueOf(semesterCode.charAt(0)));
+        int y = Integer.parseInt(String.valueOf(semesterCode.charAt(1)));
+        int z = Integer.parseInt(String.valueOf(semesterCode.charAt(2)));
+        int a = Integer.parseInt(String.valueOf(semesterCode.charAt(3)));
+        this.year = 1900 + (100*x) + (10*y) + z;
+        switch (a) {
+            case 1 -> this.term = "Spring";
+            case 4 -> this.term = "Summer";
+            case 7 -> this.term = "Fall";
+        }
     }
-
+    public int getYear() {
+        return year;
+    }
+    public String getTerm() {
+        return term;
+    }
     public int getSemesterCode() {
         return semesterCode;
     }
@@ -59,11 +79,21 @@ public class Offering {
         this.instructor = instructor;
     }
 
+    public void addInstructor(String instructor) {
+        this.instructor = this.instructor + ", " + instructor;
+    }
+
+    @JsonIgnore
+    public List<Section> getSectionList() {
+        return sectionList;
+    }
+
+    @JsonIgnore
+    public List<Section> getAggregatedSectionList() {return aggregatedSectionList;}
+
     public void addToSectionList(Section section) {
-        if (isInSectionList(section)) {
-            section.setSectionId(sectionList.size());
-            sectionList.add(section);
-        }
+        section.setSectionId(sectionList.size());
+        sectionList.add(section);
     }
 
     private boolean isInSectionList(Section section) {
@@ -77,7 +107,55 @@ public class Offering {
 
     public boolean equals(Offering otherOffering) {
         return this.semesterCode == otherOffering.semesterCode
-                && this.location.equals(otherOffering.location)
-                && this.instructor.equals(otherOffering.instructor);
+                && this.location.equals(otherOffering.location);
+    }
+
+    public void sortSectionList() {
+        sectionList.sort((s1, s2) -> s1.getComponentCode().compareToIgnoreCase(s2.getComponentCode()));
+        int i = 0;
+        for (Section section : sectionList) {
+            section.setSectionId(i);
+            i++;
+        }
+    }
+
+    public void aggregateSectionList() {
+        List<Section> aggregatedSectionList = new ArrayList<>();
+        for (Section section : sectionList) {
+            if (aggregatedSectionList.isEmpty()) {
+                aggregatedSectionList.add(section);
+            } else {
+                updateAggregatedSectionList(aggregatedSectionList, section);
+            }
+        }
+        this.aggregatedSectionList  = aggregatedSectionList;
+
+    }
+
+    private static void updateAggregatedSectionList(List<Section> aggregatedSectionList, Section section) {
+        boolean isInside = false;
+        for (Section aggregatedSection : aggregatedSectionList) {
+            String componentCode = section.getComponentCode();
+            int newEnrollmentCap = section.getEnrollmentCap();
+            int newEnrollmentTotal = section.getEnrollmentTotal();
+            if (aggregatedSection.getComponentCode().equals(componentCode)) {
+                aggregatedSection.increaseEnrollmentCap(newEnrollmentCap);
+                aggregatedSection.increaseEnrollmentTotal(newEnrollmentTotal);
+                isInside = true;
+                break;
+            }
+        }
+        if (!isInside) {
+            aggregatedSectionList.add(section);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Offering{" +
+                "location=" + location +
+                ", instructor='" + instructor  +
+                ", semesterCode=" + semesterCode +
+                '}';
     }
 }

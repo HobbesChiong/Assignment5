@@ -1,8 +1,14 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+/*
+    A specific department at SFU
+    ex: MACM
+ */
 public class Department {
     // index in the array not sure what this value is for yet?
     private int deptId;
@@ -36,6 +42,7 @@ public class Department {
         return name;
     }
 
+    @JsonIgnore
     public List<Course> getCourseList() {
         return courseList;
     }
@@ -54,9 +61,6 @@ public class Department {
         }
     }
 
-    private void addOfferingToList(Offering offering, Section section) {
-
-    }
 
     private boolean isInCourseList(Course course) {
         for (Course catalogNumber : courseList) {
@@ -67,12 +71,19 @@ public class Department {
         return false;
     }
 
+    public void sortCourseList() {
+        courseList.sort(Comparator.comparing(Course::getCatalogNumber));
+        int i = 0;
+        for (Course course : courseList) {
+            course.setCourseId(i);
+            i++;
+        }
+    }
     @Override
     public String toString() {
-
         return "Department{" +
                 "deptId=" + deptId +
-                ", name='" + name + '\'' +
+                ", name='" + name +
                 ", courseList=" + courseList +
                 '}';
     }

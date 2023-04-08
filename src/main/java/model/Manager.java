@@ -102,4 +102,13 @@ public class Manager {
         departmentList = newDepartmentList.getDepartmentList();
         sortAllLists();
     }
+
+    public Department getDepartment(int id) {
+        for (Department dept : departmentList) {
+            if (id == dept.getDeptId()) {
+                return dept;
+            }
+        }
+        return null;
+    }
 }

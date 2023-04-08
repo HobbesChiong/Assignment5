@@ -61,7 +61,6 @@ public class Department {
         }
     }
 
-
     private boolean isInCourseList(Course course) {
         for (Course catalogNumber : courseList) {
             if (catalogNumber.getCatalogNumber().equals(course.getCatalogNumber())) {
@@ -78,6 +77,15 @@ public class Department {
             course.setCourseId(i);
             i++;
         }
+    }
+
+    public Course getCourse(int id) {
+        for (Course course : courseList) {
+            if (id == course.getCourseId()) {
+                return course;
+            }
+        }
+        return null;
     }
 
     @Override

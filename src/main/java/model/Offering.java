@@ -14,19 +14,19 @@ public class Offering {
     private int courseOfferingId;
     // i.e SURREY
     private String location;
-    private String instructor;
+    private String instructors;
     private int year;
     private int semesterCode;
     private String term;
     private final List<Section> sectionList;
     private List<Section> aggregatedSectionList;
 
-    public Offering(String location, String instructor, String semesterCode) {
+    public Offering(String location, String instructors, String semesterCode) {
         this.location = location;
-        if (instructor.equals("(null)") || instructor.equals("<null>")) {
-            this.instructor = "";
+        if (instructors.equals("(null)") || instructors.equals("<null>")) {
+            this.instructors = "";
         } else {
-            this.instructor = instructor;
+            this.instructors = instructors;
         }
         this.semesterCode = Integer.parseInt(semesterCode);
         this.sectionList = new ArrayList<>();
@@ -71,16 +71,16 @@ public class Offering {
         this.location = location;
     }
 
-    public String getInstructor() {
-        return instructor;
+    public String getInstructors() {
+        return instructors;
     }
 
-    public void setInstructor(String instructor) {
-        this.instructor = instructor;
+    public void setInstructors(String instructors) {
+        this.instructors = instructors;
     }
 
     public void addInstructor(String instructor) {
-        this.instructor = this.instructor + ", " + instructor;
+        this.instructors = this.instructors + ", " + instructor;
     }
 
     @JsonIgnore
@@ -111,7 +111,7 @@ public class Offering {
     }
 
     public void sortSectionList() {
-        sectionList.sort((s1, s2) -> s1.getComponentCode().compareToIgnoreCase(s2.getComponentCode()));
+        sectionList.sort((s1, s2) -> s1.getType().compareToIgnoreCase(s2.getType()));
         int i = 0;
         for (Section section : sectionList) {
             section.setSectionId(i);
@@ -135,10 +135,10 @@ public class Offering {
     private static void updateAggregatedSectionList(List<Section> aggregatedSectionList, Section section) {
         boolean isInside = false;
         for (Section aggregatedSection : aggregatedSectionList) {
-            String componentCode = section.getComponentCode();
+            String componentCode = section.getType();
             int newEnrollmentCap = section.getEnrollmentCap();
             int newEnrollmentTotal = section.getEnrollmentTotal();
-            if (aggregatedSection.getComponentCode().equals(componentCode)) {
+            if (aggregatedSection.getType().equals(componentCode)) {
                 aggregatedSection.increaseEnrollmentCap(newEnrollmentCap);
                 aggregatedSection.increaseEnrollmentTotal(newEnrollmentTotal);
                 isInside = true;
@@ -154,7 +154,7 @@ public class Offering {
     public String toString() {
         return "Offering{" +
                 "location=" + location +
-                ", instructor='" + instructor  +
+                ", instructor='" + instructors +
                 ", semesterCode=" + semesterCode +
                 '}';
     }

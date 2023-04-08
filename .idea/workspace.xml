@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5501948c-3850-4976-8fb3-0335d10f076d" name="Changes" comment="add post method">
+    <list default="true" id="5501948c-3850-4976-8fb3-0335d10f076d" name="Changes" comment="commitg">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/OfferingInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/myapp/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/myapp/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/CourseWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CourseWatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/CreateDepartmentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CreateDepartmentList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Department.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Manager.java" afterDir="false" />
     </list>
@@ -62,7 +65,7 @@
       <workItem from="1680170176948" duration="1054000" />
       <workItem from="1680171294074" duration="6771000" />
       <workItem from="1680861647124" duration="9847000" />
-      <workItem from="1680898273599" duration="10925000" />
+      <workItem from="1680898273599" duration="5980000" />
     </task>
     <task id="LOCAL-00001" summary="sort the lists">
       <created>1680177827046</created>
@@ -85,14 +88,7 @@
       <option name="project" value="LOCAL" />
       <updated>1680861900401</updated>
     </task>
-    <task id="LOCAL-00004" summary="add post method">
-      <created>1680909084800</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1680909084800</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,8 +108,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sort the lists" />
     <MESSAGE value="commitg" />
-    <MESSAGE value="add post method" />
-    <option name="LAST_COMMIT_MESSAGE" value="add post method" />
+    <option name="LAST_COMMIT_MESSAGE" value="commitg" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

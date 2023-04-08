@@ -48,9 +48,9 @@ public class Course {
         if (isInOfferingList(offering)) {
             for (Offering off : offeringList) {
                 if (off.equals(offering)) {
-                    String oldInstructor = off.getInstructor();
-                    String newInstructor = offering.getInstructor().replaceAll("\\s+", " ");
-                    updateInstructorString(off, oldInstructor, newInstructor);
+                    String oldInstructor = off.getInstructors();
+                    String newInstructor = offering.getInstructors().replaceAll("\\s+", " ");
+                    updateInstructorsString(off, oldInstructor, newInstructor);
                     off.addToSectionList(section);
                 }
             }
@@ -61,11 +61,13 @@ public class Course {
         }
     }
 
-    private static void updateInstructorString(Offering off, String oldInstructor, String newInstructor) {
-        if (!(oldInstructor.contains(newInstructor))) {
+    private static void updateInstructorsString(Offering off, String oldInstructor, String newInstructor) {
+        if (oldInstructor.equals("")) {
+            off.setInstructors(newInstructor);
+        }
+        else if (!(oldInstructor.contains(newInstructor))) {
             int res = oldInstructor.compareTo(newInstructor);
-            off.setInstructor(res < 0 ? oldInstructor + ", " + newInstructor : newInstructor + ", " + oldInstructor);
-
+            off.setInstructors(res < 0 ? oldInstructor + ", " + newInstructor : newInstructor + ", " + oldInstructor);
         }
     }
 

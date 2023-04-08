@@ -4,12 +4,12 @@ package model;
  */
 public class Section {
     private int sectionId;
-    private String componentCode;
+    private String type;
     private int enrollmentTotal;
     private int enrollmentCap;
 
-    public Section(String componentCode, String enrollmentTotal, String enrollmentCap) {
-        this.componentCode = componentCode;
+    public Section(String type, String enrollmentTotal, String enrollmentCap) {
+        this.type = type;
         this.enrollmentTotal = Integer.parseInt(enrollmentTotal);
         this.enrollmentCap = Integer.parseInt(enrollmentCap);
     }
@@ -22,12 +22,12 @@ public class Section {
         this.sectionId = sectionId;
     }
 
-    public String getComponentCode() {
-        return componentCode;
+    public String getType() {
+        return type;
     }
 
-    public void setComponentCode(String componentCode) {
-        this.componentCode = componentCode;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getEnrollmentTotal() {
@@ -47,7 +47,7 @@ public class Section {
     }
 
     public boolean equals(Section otherSection) {
-        return this.componentCode.equals(otherSection.componentCode)
+        return this.type.equals(otherSection.type)
                 && this.enrollmentTotal == otherSection.enrollmentTotal
                 && this.enrollmentCap == otherSection.enrollmentCap;
     }
@@ -61,7 +61,7 @@ public class Section {
     @Override
     public String toString() {
         return "Section{" +
-                "componentCode=" + componentCode +
+                "componentCode=" + type +
                 ", enrollmentTotal='" + enrollmentTotal +
                 ", enrollmentCap=" + enrollmentCap +
                 '}';

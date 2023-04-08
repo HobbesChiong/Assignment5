@@ -7,11 +7,11 @@ import java.util.List;
 public class Manager {
 
     List<Department> departmentList;
-    CreateDepartmentList newDepartmentList;
+    CreateDepartmentList departmentListMaker;
 
     public Manager() {
-        newDepartmentList = new CreateDepartmentList();
-        departmentList = newDepartmentList.getDepartmentList();
+        departmentListMaker = new CreateDepartmentList();
+        departmentList = departmentListMaker.getDepartmentList();
         sortAllLists();
     }
     public List<Department> getDepartmentList() {
@@ -45,7 +45,7 @@ public class Manager {
     }
 
     private String cleansedInstructorString(Offering offering) {
-        String result = offering.getInstructor().replaceAll("\\s+", " ");
+        String result = offering.getInstructors().replaceAll("\\s+", " ");
         if (!result.isEmpty()) {
             if (result.charAt(0) == ',') {
                 result = result.substring(2);
@@ -56,7 +56,7 @@ public class Manager {
 
     private void printSections(List<Section> aggregatedSectionList) {
         for (Section section: aggregatedSectionList) {
-            String componentCode = section.getComponentCode();
+            String componentCode = section.getType();
             int enrollmentTotal = section.getEnrollmentTotal();
             int enrollmentCap = section.getEnrollmentCap();
             System.out.println("\t\t Type=" + componentCode + ", Enrollment=" + enrollmentTotal + "/" + enrollmentCap);
@@ -97,9 +97,9 @@ public class Manager {
     public void addOffering(String semester, String subjectName, String catalogNumber, String location,
                             String enrollmentCap, String component, String enrollmentTotal, String instructor)
     {
-        newDepartmentList.addOffering(semester, subjectName, catalogNumber, location, enrollmentCap, component,
+        departmentListMaker.addOffering(semester, subjectName, catalogNumber, location, enrollmentCap, component,
                 enrollmentTotal, instructor);
-        departmentList = newDepartmentList.getDepartmentList();
+        departmentList = departmentListMaker.getDepartmentList();
         sortAllLists();
     }
 }

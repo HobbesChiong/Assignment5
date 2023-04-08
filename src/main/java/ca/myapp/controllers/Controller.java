@@ -3,15 +3,15 @@ package ca.myapp.controllers;
 
 import model.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class Controller {
     private final Manager manager = new Manager();
+    private final List<CourseWatcher> courseWatcherList = new ArrayList<>();
 
     @GetMapping("/api/about")
     @ResponseStatus(HttpStatus.OK)
@@ -69,11 +69,58 @@ public class Controller {
                 offeringInput.getComponent(),
                 String.valueOf(offeringInput.getEnrollmentTotal()),
                 offeringInput.getInstructor());
+
+        Section newSection = new Section(offeringInput.getComponent(),String.valueOf(offeringInput.getEnrollmentTotal())
+                ,String.valueOf(offeringInput.getEnrollmentCap()));
+        Offering newOffering = new Offering(offeringInput.getLocation(),offeringInput.getInstructor(),String.valueOf(offeringInput.getSemester()));
+        notifyWatchers(offeringInput.getSubjectName(),offeringInput.getCatalogNumber(), newSection, newOffering);
     }
 
+    @GetMapping("/api/watchers")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CourseWatcher> getCourseWatcherList() {
+        return courseWatcherList;
+    }
     @PostMapping("/api/watchers")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createWatcher(@RequestBody CourseWatcher courseWatcher) {
+    public void createWatcher(@RequestBody CourseWatcherRequestBody courseWatcherRequestBody) {
         // use the getters to get the deptID and courseID NOTE these are ints (im not sure what brian is gonna insert them as so theyre ints for now)
+        int deptId = courseWatcherRequestBody.getDeptId();
+        int courseId = courseWatcherRequestBody.getCourseId();
+        Department department = manager.getDepartmentList().get(deptId);
+        Course course = manager.getDepartmentList().get(deptId).getCourseList().get(courseId);
+        CourseWatcher courseWatcher = new CourseWatcher(department,course);
+        courseWatcherList.add(courseWatcher);
+        sortWatcherList();
+
+    }
+
+    @GetMapping("/api/watchers/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ArrayList<String> getEventsList(@PathVariable int id) {
+        return courseWatcherList.get(id).getEvents();
+    }
+
+    @DeleteMapping("/api/watchers/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeWatcher(@PathVariable int id) {
+        courseWatcherList.remove(id);
+        sortWatcherList();
+    }
+
+    private void sortWatcherList() {
+        int i = 0;
+        for (CourseWatcher courseWatcher : courseWatcherList) {
+            courseWatcher.setWatcherId(i);
+            i++;
+        }
+    }
+    private void notifyWatchers(String departmentName, String catalogNumber , Section newSection, Offering newOffering) {
+        for (CourseWatcher courseWatcher : courseWatcherList) {
+            if(courseWatcher.getDepartment().getName().equals(departmentName) &&
+                    courseWatcher.getCourse().getCatalogNumber().equals(catalogNumber)) {
+                courseWatcher.updateEvents(newSection,newOffering);
+            }
+        }
     }
 }

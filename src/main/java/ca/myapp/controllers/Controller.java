@@ -4,8 +4,6 @@ package ca.myapp.controllers;
 import model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,26 +95,30 @@ public class Controller {
     @PostMapping("/api/watchers")
     @ResponseStatus(HttpStatus.CREATED)
     public void createWatcher(@RequestBody CourseWatcherRequestBody courseWatcherRequestBody) {
-        // use the getters to get the deptID and courseID NOTE these are ints (im not sure what brian is gonna insert them as so theyre ints for now)
         int deptId = courseWatcherRequestBody.getDeptId();
         int courseId = courseWatcherRequestBody.getCourseId();
+
+        isValidDeptOrThrow404(deptId);
+        isValidCourseOrThrow404(courseId, deptId);
+
         Department department = manager.getDepartmentList().get(deptId);
         Course course = manager.getDepartmentList().get(deptId).getCourseList().get(courseId);
         CourseWatcher courseWatcher = new CourseWatcher(department,course);
         courseWatcherList.add(courseWatcher);
         sortWatcherList();
-
     }
 
     @GetMapping("/api/watchers/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ArrayList<String> getEventsList(@PathVariable int id) {
+        isValidWatcherOrThrow404(id);
         return courseWatcherList.get(id).getEvents();
     }
 
     @DeleteMapping("/api/watchers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeWatcher(@PathVariable int id) {
+        isValidWatcherOrThrow404(id);
         courseWatcherList.remove(id);
         sortWatcherList();
     }
@@ -128,6 +130,7 @@ public class Controller {
             i++;
         }
     }
+
     private void notifyWatchers(String departmentName, String catalogNumber , Section newSection, Offering newOffering) {
         for (CourseWatcher courseWatcher : courseWatcherList) {
             if(courseWatcher.getDepartment().getName().equals(departmentName) &&
@@ -137,13 +140,14 @@ public class Controller {
         }
     }
 
+    // --- ERROR HANDLING ---
     private boolean isValidDeptOrThrow404(int id) {
         for (Department dept : manager.getDepartmentList()) {
             if (id == dept.getDeptId()) {
                 return true;
             }
         }
-        throw new FileNotFoundException("Requested Department ID does not exist");
+        throw new FileNotFoundException("Department of ID " + id + " not found.");
     }
 
     private boolean isValidCourseOrThrow404(int courseId, int deptId) {
@@ -154,7 +158,7 @@ public class Controller {
                 return true;
             }
         }
-        throw new FileNotFoundException("Requested Course ID does not exist");
+        throw new FileNotFoundException("Course of ID " + courseId + " not found.");
     }
 
     private boolean isValidCourseOfferingOrThrow404(int offeringId, int courseId, int deptId) {
@@ -166,16 +170,54 @@ public class Controller {
                 return true;
             }
         }
-        throw new FileNotFoundException("Requested Course Offering ID does not exist");
+        throw new FileNotFoundException("Course offering of ID " + offeringId + " not found.");
+    }
+
+    private boolean isValidWatcherOrThrow404(int id) {
+        for (CourseWatcher watcher : courseWatcherList) {
+            if (id == watcher.getWatcherId()) {
+                return true;
+            }
+        }
+        throw new FileNotFoundException("Course watcher of ID " + id + " not found.");
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    private static class FileNotFoundException extends RuntimeException {
+    public static class FileNotFoundException extends RuntimeException {
+        String message;
         private FileNotFoundException() {
             super();
         }
         private FileNotFoundException(String msg) {
             super(msg);
+            message = msg;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+
+    // cite: https://stackoverflow.com/questions/52437023/best-way-to-add-the-custom-exception-for-the-spring-boot-code
+    @ExceptionHandler(FileNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponse handleFileNotFoundException(FileNotFoundException ex) {
+
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(ex.getMessage());
+        return errorResponse;
+    }
+
+    public class ErrorResponse {
+        private String message;
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
         }
     }
 }

@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class CourseWatcher {
-
     private int watcherId;
     private Department department;
     private Course course;
@@ -16,7 +15,6 @@ public class CourseWatcher {
         this.department = department;
         this.course = course;
     }
-
 
     public void updateEvents(Section newSection, Offering newOffering) {
         StringBuilder event = new StringBuilder();

@@ -5,7 +5,6 @@ import java.util.List;
     Manages the data by storing all the departments into a list which contains further information
  */
 public class Manager {
-
     List<Department> departmentList;
     CreateDepartmentList departmentListMaker;
 

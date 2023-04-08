@@ -15,14 +15,12 @@ public class CreateDepartmentList {
     private final static int ENROLLMENT_TOTAL_INDEX = 5;
     private final static int INSTRUCTOR_INDEX = 6;
     private final static int COMPONENT_CODE_INDEX = 7;
+    private final static String FILE_NAME = "data\\course_data_2018.csv";
 
     public CreateDepartmentList() {
         createDepartmentList();
     }
-
-    // TODO: Why is this a capiotal
     private void createDepartmentList() {
-        String FILE_NAME = "data\\course_data_2018.csv";
         CsvReader courseData = new CsvReader(FILE_NAME);
         List<String[]> courseDataList = courseData.getListOfCsvRows();
 
@@ -37,7 +35,9 @@ public class CreateDepartmentList {
         }
     }
 
-    private void createModel(String curDeptName, Department newDepartment, Course curCourse, Offering curOffering, Section curSection) {
+    private void createModel(String curDeptName, Department newDepartment, Course curCourse, Offering curOffering,
+                             Section curSection)
+    {
         if (isInDepartmentList(newDepartment)) {
             for (Department dept : departmentList) {
                 if (dept.getName().equals(curDeptName)) {

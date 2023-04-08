@@ -55,7 +55,9 @@ public class Controller {
 
     @GetMapping("/api/departments/{deptId}/courses/{courseId}/offerings/{courseOfferingId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Section> getSections(@PathVariable String deptId, @PathVariable String courseId, @PathVariable String courseOfferingId) {
+    public List<Section> getSections(@PathVariable String deptId, @PathVariable String courseId,
+                                     @PathVariable String courseOfferingId)
+    {
         isValidDeptOrThrow404(Integer.parseInt(deptId));
         int deptIndex = Integer.parseInt(deptId);
 
@@ -81,10 +83,18 @@ public class Controller {
                 String.valueOf(offeringInput.getEnrollmentTotal()),
                 offeringInput.getInstructor());
 
-        Section newSection = new Section(offeringInput.getComponent(),String.valueOf(offeringInput.getEnrollmentTotal())
-                ,String.valueOf(offeringInput.getEnrollmentCap()));
-        Offering newOffering = new Offering(offeringInput.getLocation(),offeringInput.getInstructor(),String.valueOf(offeringInput.getSemester()));
-        notifyWatchers(offeringInput.getSubjectName(),offeringInput.getCatalogNumber(), newSection, newOffering);
+        Section newSection = new Section(offeringInput.getComponent(),
+                String.valueOf(offeringInput.getEnrollmentTotal()),
+                String.valueOf(offeringInput.getEnrollmentCap()));
+
+        Offering newOffering = new Offering(offeringInput.getLocation(),
+                offeringInput.getInstructor(),
+                String.valueOf(offeringInput.getSemester()));
+
+        notifyWatchers(offeringInput.getSubjectName(),
+                offeringInput.getCatalogNumber(),
+                newSection,
+                newOffering);
     }
 
     @GetMapping("/api/watchers")
@@ -133,8 +143,9 @@ public class Controller {
 
     private void notifyWatchers(String departmentName, String catalogNumber , Section newSection, Offering newOffering) {
         for (CourseWatcher courseWatcher : courseWatcherList) {
-            if(courseWatcher.getDepartment().getName().equals(departmentName) &&
-                    courseWatcher.getCourse().getCatalogNumber().equals(catalogNumber)) {
+            if (courseWatcher.getDepartment().getName().equals(departmentName)
+                    && courseWatcher.getCourse().getCatalogNumber().equals(catalogNumber))
+            {
                 courseWatcher.updateEvents(newSection,newOffering);
             }
         }

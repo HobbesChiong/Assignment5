@@ -1,7 +1,6 @@
 package model;
 
 public class CourseWatcherRequestBody {
-
     private final int deptId;
     private final int courseId;
 

@@ -55,9 +55,11 @@ public class Section {
     public void increaseEnrollmentCap(int val){
         enrollmentCap += val;
     }
+
     public void increaseEnrollmentTotal(int val) {
         enrollmentTotal += val;
     }
+
     @Override
     public String toString() {
         return "Section{" +

@@ -41,12 +41,15 @@ public class Offering {
             case 7 -> this.term = "Fall";
         }
     }
+
     public int getYear() {
         return year;
     }
+
     public String getTerm() {
         return term;
     }
+
     public int getSemesterCode() {
         return semesterCode;
     }
@@ -89,7 +92,9 @@ public class Offering {
     }
 
     @JsonIgnore
-    public List<Section> getAggregatedSectionList() {return aggregatedSectionList;}
+    public List<Section> getAggregatedSectionList() {
+        return aggregatedSectionList;
+    }
 
     public void addToSectionList(Section section) {
         section.setSectionId(sectionList.size());
@@ -129,7 +134,6 @@ public class Offering {
             }
         }
         this.aggregatedSectionList  = aggregatedSectionList;
-
     }
 
     private static void updateAggregatedSectionList(List<Section> aggregatedSectionList, Section section) {

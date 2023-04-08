@@ -9,7 +9,6 @@ import java.util.List;
     Ex: 250 in CMPT 250
  */
 public class Course {
-    // index in the array not sure what this value is for yet?
     private int courseId;
     private String catalogNumber;
     private List<Offering> offeringList;
@@ -97,6 +96,7 @@ public class Course {
             i++;
         }
     }
+
     @Override
     public String toString() {
         return "Course{" +

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class CourseWatcher {
-    private int watcherId;
+    private int id;
     private Department department;
     private Course course;
     private final ArrayList<String> events = new ArrayList<>();
@@ -31,8 +31,8 @@ public class CourseWatcher {
         events.add(event.toString());
     }
 
-    public void setWatcherId(int watcherId) {
-        this.watcherId = watcherId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Department getDepartment() {
@@ -46,7 +46,7 @@ public class CourseWatcher {
     public ArrayList<String> getEvents() {
         return events;
     }
-    public int getWatcherId() {
-        return watcherId;
+    public int getId() {
+        return id;
     }
 }

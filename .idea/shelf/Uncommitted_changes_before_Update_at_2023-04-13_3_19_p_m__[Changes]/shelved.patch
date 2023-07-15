@@ -1,0 +1,133 @@
+Index: .idea/workspace.xml
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+deleted file mode 100644
+--- a/.idea/workspace.xml	(revision 54cdfba7c7ab32f7cb5baaecc31a3c24ca399538)
++++ /dev/null	(revision 54cdfba7c7ab32f7cb5baaecc31a3c24ca399538)
+@@ -1,125 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="AutoImportSettings">
+-    <option name="autoReloadType" value="SELECTIVE" />
+-  </component>
+-  <component name="ChangeListManager">
+-    <list default="true" id="5501948c-3850-4976-8fb3-0335d10f076d" name="Changes" comment="added the get methods">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/model/CourseWatcherRequestBody.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/myapp/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/myapp/controllers/Controller.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Course.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/model/CourseWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CourseWatcher.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Manager.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Offering.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Offering.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Section.java" afterDir="false" />
+-    </list>
+-    <option name="SHOW_DIALOG" value="false" />
+-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-    <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="ExternalProjectsData">
+-    <projectState path="$PROJECT_DIR$">
+-      <ProjectState />
+-    </projectState>
+-  </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="Class" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="Git.Settings">
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="MarkdownSettingsMigration">
+-    <option name="stateVersion" value="1" />
+-  </component>
+-  <component name="ProjectId" id="2NjGdvcQ38XzxtVYosN3G0xHPFr" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+-  <component name="ProjectViewState">
+-    <option name="hideEmptyMiddlePackages" value="true" />
+-    <option name="showLibraryContents" value="true" />
+-  </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RequestMappingsPanelOrder0": "0",
+-    "RequestMappingsPanelOrder1": "1",
+-    "RequestMappingsPanelWidth0": "75",
+-    "RequestMappingsPanelWidth1": "75",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "last_opened_file_path": "C:/Users/hobbe/Desktop/SFUCS/CMPT 213/Assignment2",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+-    "spring.configuration.checksum": "3b075bd9030cd19827a4f81092ebdbd4"
+-  }
+-}]]></component>
+-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+-  <component name="TaskManager">
+-    <task active="true" id="Default" summary="Default task">
+-      <changelist id="5501948c-3850-4976-8fb3-0335d10f076d" name="Changes" comment="" />
+-      <created>1680170174606</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1680170174606</updated>
+-      <workItem from="1680170176948" duration="1054000" />
+-      <workItem from="1680171294074" duration="6771000" />
+-      <workItem from="1680861647124" duration="9847000" />
+-      <workItem from="1680898273599" duration="5980000" />
+-    </task>
+-    <task id="LOCAL-00001" summary="sort the lists">
+-      <created>1680177827046</created>
+-      <option name="number" value="00001" />
+-      <option name="presentableId" value="LOCAL-00001" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1680177827046</updated>
+-    </task>
+-    <task id="LOCAL-00002" summary="commitg">
+-      <created>1680861861888</created>
+-      <option name="number" value="00002" />
+-      <option name="presentableId" value="LOCAL-00002" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1680861861888</updated>
+-    </task>
+-    <task id="LOCAL-00003" summary="commitg">
+-      <created>1680861900401</created>
+-      <option name="number" value="00003" />
+-      <option name="presentableId" value="LOCAL-00003" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1680861900401</updated>
+-    </task>
+-    <option name="localTasksCounter" value="4" />
+-    <servers />
+-  </component>
+-  <component name="TypeScriptGeneratedFilesManager">
+-    <option name="version" value="3" />
+-  </component>
+-  <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State />
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-  </component>
+-  <component name="VcsManagerConfiguration">
+-    <MESSAGE value="sort the lists" />
+-    <MESSAGE value="commitg" />
+-    <option name="LAST_COMMIT_MESSAGE" value="commitg" />
+-  </component>
+-  <component name="XSLT-Support.FileAssociations.UIState">
+-    <expand />
+-    <select />
+-  </component>
+-</project>
+\ No newline at end of file

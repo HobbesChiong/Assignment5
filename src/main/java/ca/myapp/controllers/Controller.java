@@ -136,7 +136,7 @@ public class Controller {
     private void sortWatcherList() {
         int i = 0;
         for (CourseWatcher courseWatcher : courseWatcherList) {
-            courseWatcher.setWatcherId(i);
+            courseWatcher.setId(i);
             i++;
         }
     }
@@ -186,7 +186,7 @@ public class Controller {
 
     private boolean isValidWatcherOrThrow404(int id) {
         for (CourseWatcher watcher : courseWatcherList) {
-            if (id == watcher.getWatcherId()) {
+            if (id == watcher.getId()) {
                 return true;
             }
         }
